@@ -99,11 +99,14 @@ const initializeBot = async () => {
         });
 
         processQueue(bot); // Iniciar procesamiento
-        
-        res.json({
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({
             success: true,
+            message: 'Mensaje enviado correctamente',
             inQueue: messageQueue.length
-        });
+        }));
+        
     }));
 
     return await createBot({
